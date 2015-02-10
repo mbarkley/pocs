@@ -26,7 +26,6 @@ import com.google.gwt.user.client.ui.Composite;
 
 @Page(role = DefaultPage.class)
 @Templated("AppBuilderForm.html#app-template")
-@SuppressWarnings({"unused"})
 public class AppBuilderForm extends Composite {
 
   @DataField
@@ -53,8 +52,7 @@ public class AppBuilderForm extends Composite {
       @Override
       public void callback(Response response) {
         if (response.getStatusCode() == Response.SC_OK) {
-          // TODO show loading indicator
-          Window.alert("Compiling app");
+          showSpinner();
         }
         else {
           Window.alert("Oops something went wrong! Server returned:" + 
@@ -65,7 +63,7 @@ public class AppBuilderForm extends Composite {
   }
   
   private void onAppReady(@Observes AppReady appReady) {
-    // TODO hide loading indicator
+    hideSpinner();
     Window.alert("Application is ready");
   }
   
@@ -73,4 +71,19 @@ public class AppBuilderForm extends Composite {
     // TODO hide loading indicator
     Window.alert("Problem loading application");
   }
+  
+  private native void showSpinner() /*-{
+    var target = $doc.getElementById('loading');
+    target.style.display = 'block';
+    $wnd.spinner.spin(target);
+    
+    var placeholder = $doc.getElementById('placeholder');
+    placeholder.style.display = 'none';
+  }-*/;
+  
+  private native void hideSpinner() /*-{
+    var target = $doc.getElementById('loading');
+    target.style.display = 'none';
+    $wnd.spinner.stop();
+  }-*/;
 }

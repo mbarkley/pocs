@@ -6,11 +6,13 @@ import org.jboss.errai.common.client.api.annotations.Portable;
 public class AppReady {
   
   private String appId;
-
+  private String url;
+  
   public AppReady() {};
   
-  public AppReady(String id) {
+  public AppReady(String id, String url) {
     this.appId = id;
+    this.url = url;
   }
   
   public String getAppId() {
@@ -19,6 +21,14 @@ public class AppReady {
 
   public void setAppId(String appId) {
     this.appId = appId;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 
 }

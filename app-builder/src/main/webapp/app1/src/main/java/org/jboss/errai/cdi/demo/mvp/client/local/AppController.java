@@ -89,12 +89,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     this.container = container;
     bind();
 
-    if ("".equals(History.getToken())) {
-      History.newItem("list");
-    }
-    else {
-      History.fireCurrentHistoryState();
-    }
+    new ContactsPresenter().go(container);
   }
 
   public void onValueChange(ValueChangeEvent<String> event) {

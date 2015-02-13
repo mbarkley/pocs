@@ -17,6 +17,9 @@
 package org.jboss.errai.cdi.demo.mvp.client.local;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -24,9 +27,21 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class Contacts implements EntryPoint {
 
+  class MyPanel extends HorizontalPanel {
+    public void attach() {
+      onAttach();
+      RootPanel.detachOnWindowClose(this);
+    }
+  }
+  
   @Override
   public void onModuleLoad() {
-    new AppController().go(RootPanel.get());
+    MyPanel panel = new MyPanel();
+    new AppController().go(panel);
+    
+    Element e = DOM.getElementById("app1");
+    e.getParentElement().replaceChild(panel.getElement(), e);
+    panel.attach();
   }
 
 }

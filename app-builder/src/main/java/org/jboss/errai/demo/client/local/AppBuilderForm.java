@@ -16,6 +16,8 @@ import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.EventHandler;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
+import com.google.gwt.core.client.Callback;
+import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.http.client.Response;
@@ -64,11 +66,23 @@ public class AppBuilderForm extends Composite {
   
   private void onAppReady(@Observes AppReady appReady) {
     hideSpinner();
-    Window.alert("Application is ready");
+    ScriptInjector.fromUrl(appReady.getUrl()).setCallback(new Callback<Void, Exception>() {
+      
+      @Override
+      public void onSuccess(Void result) {
+      }
+      
+      @Override
+      public void onFailure(Exception reason) {
+        
+      }
+    })
+    .setWindow(ScriptInjector.TOP_WINDOW)
+    .inject();
   }
   
   private void onAppError(@Observes AppError appError) {
-    // TODO hide loading indicator
+    hideSpinner();
     Window.alert("Problem loading application");
   }
   

@@ -53,8 +53,10 @@ public class AppBuilderEndpointImpl implements AppBuilderEndpoint {
       public void run() {
         try {
           final InvocationResult result = invoker.execute(request);
+          //app1/target/app1/app1/app1.nocache.js
           if (result.getExitCode() == 0) {
-            appReadyEvent.fire(new AppReady("path/to/the/script.js"));
+            String script = appId + "/target/" + appId + "/" +appId + "/" + appId + ".nocache.js"; 
+            appReadyEvent.fire(new AppReady(appId, script));
           }
           else {
             appErrorEvent

@@ -39,9 +39,13 @@ public class Contacts implements EntryPoint {
     MyPanel panel = new MyPanel();
     new AppController().go(panel);
     
-    Element e = DOM.getElementById("app1");
+    Element e = DOM.getElementById(getDomId("app1"));
     e.appendChild(panel.getElement());
     panel.attach();
   }
+  
+  private native String getDomId(String appId) /*-{
+    return $wnd.app_roots[appId];
+  }-*/;
 
 }

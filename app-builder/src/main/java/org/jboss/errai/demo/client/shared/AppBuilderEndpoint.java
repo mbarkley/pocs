@@ -10,6 +10,6 @@ public interface AppBuilderEndpoint {
 
   @GET
   @Path("/{appId}")
-  public Response loadApp(@PathParam("appId") String appId);
+  public Response compileApp(@PathParam("appId") String appId);
 
 }

@@ -70,7 +70,7 @@ public class ContactsPresenter implements Presenter {
   }
 
   private final native JsArray<Contact> getContacts() /*-{
-    return $wnd.app_data["app1"];
+    return $wnd.app_data["app1-data"];
   }-*/;
   
   private void deleteSelectedContacts() {

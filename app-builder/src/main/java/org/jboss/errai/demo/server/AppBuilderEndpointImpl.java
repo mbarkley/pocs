@@ -37,7 +37,7 @@ public class AppBuilderEndpointImpl implements AppBuilderEndpoint {
   private ManagedExecutorService executorService;
 
   @Override
-  public Response loadApp(final String appId) {
+  public Response compileApp(final String appId) {
     final String rootDir = req.getServletContext().getRealPath(File.separator);
     final File appPom = new File(rootDir + File.separator + appId + File.separator + "pom.xml");
     final String scriptPath = appId + "/target/" + appId + "/" +appId + "/" + appId + ".nocache.js";

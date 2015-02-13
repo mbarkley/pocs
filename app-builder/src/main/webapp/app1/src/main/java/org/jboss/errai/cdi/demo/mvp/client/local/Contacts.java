@@ -40,7 +40,7 @@ public class Contacts implements EntryPoint {
     new AppController().go(panel);
     
     Element e = DOM.getElementById("app1");
-    e.getParentElement().replaceChild(panel.getElement(), e);
+    e.appendChild(panel.getElement());
     panel.attach();
   }
 

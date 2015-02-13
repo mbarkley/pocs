@@ -25,6 +25,7 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 
 @Page(role = DefaultPage.class)
 @Templated("AppBuilderForm.html#app-template")
@@ -57,8 +58,7 @@ public class AppBuilderForm extends Composite {
           showSpinner();
         }
         else {
-          Window.alert("Oops something went wrong! Server returned:" + 
-        response.getStatusCode());
+          Window.alert("Oops something went wrong! Server returned:" + response.getStatusCode());
         }
       }
     }).loadApp("app1");
@@ -66,16 +66,19 @@ public class AppBuilderForm extends Composite {
   
   private void onAppReady(@Observes AppReady appReady) {
     hideSpinner();
-    ScriptInjector.fromUrl(appReady.getUrl()).setCallback(new Callback<Void, Exception>() {
-      
-      @Override
-      public void onSuccess(Void result) {
-      }
-      
-      @Override
-      public void onFailure(Exception reason) {
+    ScriptInjector.fromUrl(appReady.getUrl() + "?nocache=" + System.currentTimeMillis())
+      .setCallback(new Callback<Void, Exception>() {
+        @Override
+        public void onSuccess(Void result) {
+          Element e = DOM.getElementById("app1");
+          e.appendChild(new HTML("<h1>Here's your application:</h1>").getElement());
+          disableButton();
+        }
         
-      }
+        @Override
+        public void onFailure(Exception reason) {
+          Window.alert("Problem injecting script:" + reason.getMessage());      
+        }
     })
     .setWindow(ScriptInjector.TOP_WINDOW)
     .inject();
@@ -83,7 +86,7 @@ public class AppBuilderForm extends Composite {
   
   private void onAppError(@Observes AppError appError) {
     hideSpinner();
-    Window.alert("Problem loading application");
+    Window.alert("Problem loading application:" + appError.getMessage());
   }
   
   private native void showSpinner() /*-{
@@ -100,4 +103,10 @@ public class AppBuilderForm extends Composite {
     target.style.display = 'none';
     $wnd.spinner.stop();
   }-*/;
+  
+  private native void disableButton() /*-{
+    var target = $doc.getElementById('loadApp');
+    target.disabled = true;
+  }-*/;
+  
 }

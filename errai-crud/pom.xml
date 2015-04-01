@@ -146,7 +146,7 @@
         <configuration>   
           <logLevel>INFO</logLevel>
           <noServer>false</noServer>          
-          <extraJvmArgs>-Xmx1024m -XX:CompileThreshold=7000 -XX:MaxPermSize=256M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context} -Derrai.jboss.javaopts="-XX:MaxPermSize=256m" -Derrai.jboss.javaagent.path=${settings.localRepository}/org/jboss/errai/errai-client-local-class-hider/${errai.version}/errai-client-local-class-hider-${errai.version}.jar</extraJvmArgs>
+          <extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -XX:MaxPermSize=256M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context} -Derrai.jboss.javaopts="-XX:MaxPermSize=256m" -Derrai.jboss.javaagent.path=${settings.localRepository}/org/jboss/errai/errai-client-local-class-hider/${errai.version}/errai-client-local-class-hider-${errai.version}.jar</extraJvmArgs>
           <server>org.jboss.errai.cdi.server.gwt.JBossLauncher</server>
 
           <!-- Errai's embedded WildFly launcher can be used to simplify IDE run configs as  
@@ -156,13 +156,13 @@
             to avoid class loading problems for classes that are not needed on the server. 
             To configure an alternative package filter for client-only classes, specify: 
             -Derrai.client.local.class.pattern=.*/myproject/client/.* -->
-          <!--extraJvmArgs>-Xmx712m -XX:CompileThreshold=7000 -XX:MaxPermSize=512M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context}</extraJvmArgs-->          
+          <!--extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -XX:MaxPermSize=512M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context}</extraJvmArgs-->          
           <!--server>org.jboss.errai.cdi.server.gwt.EmbeddedWildFlyLauncher</server-->
           <disableCastChecking>true</disableCastChecking>
           <runTarget>${errai.dev.context}/index.html</runTarget>
           <soyc>false</soyc>
           <hostedWebapp>src/main/webapp</hostedWebapp>
-          <strict>true</strict>
+          <draftCompile>true</draftCompile>
         </configuration>
       </plugin>
       <plugin>
@@ -252,8 +252,7 @@
         </dependency>
 
         <dependency><groupId>com.google.guava</groupId><artifactId>guava-gwt</artifactId><scope>provided</scope></dependency>
-        <dependency><groupId>hsqldb</groupId><artifactId>hsqldb</artifactId><scope>provided</scope></dependency>
-        <dependency><groupId>javax.annotation</groupId><artifactId>jsr250-api</artifactId><scope>provided</scope></dependency>
+        <dependency><groupId>hsqldb</groupId><artifactId>hsqldb</artifactId><scope>provided</scope></dependency>      
         <dependency><groupId>javax.enterprise</groupId><artifactId>cdi-api</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>javax.inject</groupId><artifactId>javax.inject</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>javax.validation</groupId><artifactId>validation-api</artifactId><classifier>sources</classifier><scope>provided</scope></dependency>
@@ -277,8 +276,8 @@
         <dependency><groupId>org.jboss.errai</groupId><artifactId>errai-html5</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>org.jboss.logging</groupId><artifactId>jboss-logging</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>org.jboss.resteasy</groupId><artifactId>jaxrs-api</artifactId><scope>provided</scope></dependency>
-        <dependency><groupId>org.jboss.spec.javax.interceptor</groupId><artifactId>jboss-interceptors-api_1.1_spec</artifactId><scope>provided</scope></dependency>
-        <dependency><groupId>org.jboss.spec.javax.transaction</groupId><artifactId>jboss-transaction-api_1.1_spec</artifactId><scope>provided</scope></dependency>
+        <dependency><groupId>org.jboss.spec.javax.interceptor</groupId><artifactId>jboss-interceptors-api_1.2_spec</artifactId><scope>provided</scope></dependency>
+        <dependency><groupId>org.jboss.spec.javax.transaction</groupId><artifactId>jboss-transaction-api_1.2_spec</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>org.jboss.weld.servlet</groupId><artifactId>weld-servlet-core</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>org.jboss.weld</groupId><artifactId>weld-core</artifactId><scope>provided</scope></dependency>        
         <dependency><groupId>xml-apis</groupId><artifactId>xml-apis</artifactId><scope>provided</scope></dependency>

@@ -1,13 +1,16 @@
 package org.jboss.errai.demo.client.local;
 
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import org.gwtbootstrap3.client.ui.Modal;
-import org.gwtbootstrap3.client.ui.ModalBody;
-import org.gwtbootstrap3.client.ui.ModalComponent;
-import org.gwtbootstrap3.client.ui.ModalSize;
-import org.gwtbootstrap3.client.ui.constants.ModalBackdrop;
+import org.jboss.errai.common.client.api.Caller;
+import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jboss.errai.demo.client.shared.Employee;
+import org.jboss.errai.demo.client.shared.EmployeeEndpoint;
+import org.jboss.errai.demo.client.shared.EmployeeEvent;
 import org.jboss.errai.ui.client.widget.ListWidget;
 import org.jboss.errai.ui.client.widget.Table;
 import org.jboss.errai.ui.nav.client.local.DefaultPage;
@@ -33,22 +36,28 @@ public class CrudApp extends Composite {
   @Inject @DataField @Table(root="tbody") 
   private ListWidget<Employee, EmployeeListItemWidget> employees;
 
+  @Inject
+  private Caller<EmployeeEndpoint> endpoint;
+  
+  @PostConstruct
+  private void loadData() {
+    endpoint.call(new RemoteCallback<List<Employee>>() {
+      @Override
+      public void callback(List<Employee> data) {
+        employees.setValue(data, true);
+      }
+    }).listAll();
+  }
+  
   @EventHandler("create")
   private void onCreate(ClickEvent e) {
-    Modal m = new Modal();
-    m.setSize(ModalSize.MEDIUM);
-    m.setHideOtherModals(true);
-    m.setClosable(true);
-    
-    ModalBody b = new ModalBody();
-    b.add(form);
-    
-    m.setTitle("Create new Employee");
-    m.add(b);
-    
-    m.setFade(true);
-    m.setDataBackdrop(ModalBackdrop.FALSE);
-    m.show();
+    form.setModel(new Employee());
+    new ModalForm(form, "Create new Employee", "employeeForm").show();
+  }
+  
+  @SuppressWarnings("unused")
+  private void onEmployeeEvent(@Observes EmployeeEvent e) {
+    loadData();
   }
   
 }

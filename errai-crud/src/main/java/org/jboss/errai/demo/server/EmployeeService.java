@@ -39,7 +39,5 @@ public class EmployeeService {
     Employee uc = em.find(Employee.class, id);
     em.remove(uc);
   }
-
-
   
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>dyn-modules-parent</name>
+  <groupId>org.jboss.errai.demo</groupId>
+  <artifactId>dyn-modules-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <url>http://jboss.org/errai/errai</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <description>    
+  </description>
+
+  <developers>
+    <developer>
+      <name>Christian Sadilek</name>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:errai/errai.git</connection>
+    <developerConnection>scm:git:git@github.com:errai/errai.git</developerConnection>
+    <url>scm:git:git@github.com:errai/errai.git</url>
+  </scm>
+
+  <organization>
+    <name>JBoss, a division of Red Hat</name>
+    <url>http://www.jboss.org</url>
+  </organization>
+
+  <!-- IssueManagement -->
+  <issueManagement>
+    <system>jira</system>
+    <url>http://jira.jboss.org/jira/browse/ERRAI</url>
+  </issueManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <guice.version>3.0</guice.version>
+    <guava.version>17.0</guava.version>
+    <appengine.version>1.7.6</appengine.version>
+    <validation.api.version>1.0.0.GA</validation.api.version>    
+    <mvel.version>2.1.7.Final</mvel.version>
+    <weld.version>2.0.5.Final</weld.version>
+    <gwtArgs></gwtArgs>
+    <argLine>-Dgwt.args="${gwtArgs}"</argLine>    
+    <errai.version>3.2.0-SNAPSHOT</errai.version>
+    <javaee.version>3.0.2.Final</javaee.version>
+  </properties>
+
+  <modules>
+    <module>module-core</module>
+    <module>module-producer</module>
+    <module>module-consumer</module>
+  </modules>  
+
+  <dependencyManagement>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.errai.bom</groupId>
+        <artifactId>errai-bom</artifactId>
+        <version>${errai.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.jboss.errai.demo</groupId>
+        <artifactId>module-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.errai.demo</groupId>
+        <artifactId>module-producer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.errai.demo</groupId>
+        <artifactId>module-consumer</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+
+  </dependencyManagement>
+
+   <build>    
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+  </build>
+
+</project>

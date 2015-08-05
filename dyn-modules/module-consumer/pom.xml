@@ -145,8 +145,8 @@
           <disableCastChecking>true</disableCastChecking>
           <runTarget>${errai.dev.context}/index.html</runTarget>
           <soyc>false</soyc>
-          <hostedWebapp>src/main/webapp</hostedWebapp>
-          <draftCompile>true</draftCompile>
+          <hostedWebapp>src/main/webapp</hostedWebapp>          
+          <jsInteropMode>JS</jsInteropMode>
         </configuration>
       </plugin>
       <plugin>

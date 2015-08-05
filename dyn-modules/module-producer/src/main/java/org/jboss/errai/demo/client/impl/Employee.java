@@ -1,25 +1,15 @@
-package org.jboss.errai.demo.client.shared;
+package org.jboss.errai.demo.client.impl;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import com.google.gwt.core.client.js.JsExport;
+import com.google.gwt.core.client.js.JsNamespace;
+import com.google.gwt.core.client.js.JsType;
 
-import org.jboss.errai.common.client.api.annotations.Portable;
-import org.jboss.errai.databinding.client.api.Bindable;
-
-@Entity
-@Bindable
-@Portable
-@NamedQueries({ @NamedQuery(name = "allEmployees", query = "SELECT e FROM Employee e ORDER BY e.id") })
-public class Employee {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+@JsType
+@JsNamespace("Core")
+public class Employee implements org.jboss.errai.demo.client.Employee {
+  
   private Long id;
 
   private String firstName;
@@ -30,55 +20,65 @@ public class Employee {
   
   private Date hireDate;
 
-  @Lob
-  private String picture;
-
+  private Employee(String firstName, String lastName, String email) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
+  
+  @JsExport
+  public static Employee create(String firstName, String lastName, String email) {
+    return new Employee(firstName, lastName, email);
+  }
+  
+  @Override
   public Long getId() {
     return id;
   }
 
+  @Override
   public void setId(Long id) {
     this.id = id;
   }
 
+  @Override
   public String getFirstName() {
     return firstName;
   }
 
+  @Override
   public void setFirstName(String name) {
     this.firstName = name;
   }
 
+  @Override
   public String getLastName() {
     return lastName;
   }
 
+  @Override
   public void setLastName(String complaint) {
     this.lastName = complaint;
   }
 
+  @Override
   public String getEmail() {
     return email;
   }
 
+  @Override
   public void setEmail(String email) {
     this.email = email;
   }
 
+  @Override
   public Date getHireDate() {
     return hireDate;
   }
 
+  @Override
   public void setHireDate(Date hireDate) {
     this.hireDate = hireDate;
-  }
-
-  public String getPicture() {
-    return picture;
-  }
-
-  public void setPicture(String picture) {
-    this.picture = picture;
   }
 
   @Override
@@ -89,7 +89,6 @@ public class Employee {
     result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
     result = prime * result + ((hireDate == null) ? 0 : hireDate.hashCode());
     result = prime * result + ((id == null) ? 0 : id.hashCode());
-    result = prime * result + ((picture == null) ? 0 : picture.hashCode());
     result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
     return result;
   }
@@ -127,12 +126,6 @@ public class Employee {
     }
     else if (!id.equals(other.id))
       return false;
-    if (picture == null) {
-      if (other.picture != null)
-        return false;
-    }
-    else if (!picture.equals(other.picture))
-      return false;
     if (lastName == null) {
       if (other.lastName != null)
         return false;
@@ -144,8 +137,13 @@ public class Employee {
 
   @Override
   public String toString() {
-    return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
-            + ", email=" + email + ", hireDate=" + hireDate + ", image=" + picture + "]";
+    return "EmployeeImpl [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
+            + ", email=" + email + ", hireDate=" + hireDate + "]";
+  }
+
+  @Override
+  public String getDetailString() {
+    return getFirstName() + " " + getLastName() + ":" + getEmail();
   }
 
 }

@@ -3,13 +3,9 @@
 
   <scan>
     <!-- These exclusions were added by Errai to avoid deploying client-side classes to the server -->
-    <exclude name = "org.jboss.errai.demo.client.local.CrudApp$1" />
-    <exclude name = "org.jboss.errai.demo.client.local.CrudApp" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeForm$1" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeForm$2" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeForm" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeListItemWidget$1" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeListItemWidget" />
+    <exclude name = "org.jboss.errai.demo.client.local.Consumer$1" />
+    <exclude name = "org.jboss.errai.demo.client.local.Consumer" />
+    <exclude name = "org.jboss.errai.demo.client.local.EmployeeFactory" />
     <!-- End of Errai exclusions -->
   </scan>
 </beans>

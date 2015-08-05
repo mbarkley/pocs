@@ -146,7 +146,8 @@
           <runTarget>${errai.dev.context}/index.html</runTarget>
           <soyc>false</soyc>
           <hostedWebapp>src/main/webapp</hostedWebapp>
-          <draftCompile>true</draftCompile>
+          <webappDirectory>../module-consumer/src/main/webapp/</webappDirectory>
+          <jsInteropMode>JS</jsInteropMode>
         </configuration>
       </plugin>
       <plugin>

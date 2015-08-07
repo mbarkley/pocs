@@ -54,7 +54,7 @@
     <weld.version>2.0.5.Final</weld.version>
     <gwtArgs></gwtArgs>
     <argLine>-Dgwt.args="${gwtArgs}"</argLine>    
-    <errai.version>3.2.0-SNAPSHOT</errai.version>
+    <errai.version>4.0.0-SNAPSHOT</errai.version>
     <javaee.version>3.0.2.Final</javaee.version>
   </properties>
 

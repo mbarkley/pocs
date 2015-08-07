@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <module rename-to="consumer">
-  <inherits name="org.jboss.errai.enterprise.All" />  
+  <inherits name="org.jboss.errai.enterprise.CDI" />  
   
   <inherits name="org.jboss.errai.demo.Core" />    
 </module>

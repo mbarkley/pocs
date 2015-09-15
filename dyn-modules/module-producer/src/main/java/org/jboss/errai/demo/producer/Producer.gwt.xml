@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module rename-to="producer">   
+  <inherits name="org.jboss.errai.enterprise.CDI" />
+  <inherits name="org.jboss.errai.demo.core.Core" />
+  
+  <entry-point class='org.jboss.errai.demo.producer.client.Producer' />
+  <collapse-all-properties />
+</module>

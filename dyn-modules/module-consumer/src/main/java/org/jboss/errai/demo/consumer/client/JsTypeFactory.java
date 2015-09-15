@@ -1,10 +1,10 @@
-package org.jboss.errai.demo.client.local;
+package org.jboss.errai.demo.consumer.client;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
-import org.jboss.errai.demo.client.DepScopedService;
-import org.jboss.errai.demo.client.Employee;
+import org.jboss.errai.demo.core.client.DepScopedService;
+import org.jboss.errai.demo.core.client.Employee;
 
 @ApplicationScoped
 public class JsTypeFactory {

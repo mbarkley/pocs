@@ -1,4 +1,4 @@
-package org.jboss.errai.demo.client.impl;
+package org.jboss.errai.demo.producer.client;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import com.google.gwt.core.client.js.JsType;
 
 @JsType
 @JsNamespace("Core")
-public class Employee implements org.jboss.errai.demo.client.Employee {
+public class Employee implements org.jboss.errai.demo.core.client.Employee {
   
   private Long id;
 

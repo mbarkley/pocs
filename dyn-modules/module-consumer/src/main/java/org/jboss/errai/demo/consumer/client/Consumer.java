@@ -1,11 +1,10 @@
-package org.jboss.errai.demo.client.local;
+package org.jboss.errai.demo.consumer.client;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.jboss.errai.demo.client.AppScopedService;
-import org.jboss.errai.demo.client.DepScopedService;
-import org.jboss.errai.demo.client.Employee;
+import org.jboss.errai.demo.core.client.AppScopedService;
+import org.jboss.errai.demo.core.client.DepScopedService;
+import org.jboss.errai.demo.core.client.Employee;
 import org.jboss.errai.ui.nav.client.local.DefaultPage;
 import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
@@ -24,7 +23,8 @@ public class Consumer extends Composite {
   @Inject @DataField private Anchor a1;
   @Inject @DataField private Anchor a2;
   @Inject @DataField private Anchor a3;
-
+  @Inject @DataField private Anchor a4;
+  
   // Injecting an instances of types provided by a different script at runtime
   // (not known/inherited in this GWT module) (see dyn-modules/module-producer)
   
@@ -35,7 +35,7 @@ public class Consumer extends Composite {
   // Provided by a native script
   @Inject
   private DepScopedService depScopedService;
-
+  
   @EventHandler("a1")
   private void onA1(final ClickEvent e) {
     Window.alert(appScopedService.hello());
@@ -50,5 +50,10 @@ public class Consumer extends Composite {
   private void onA3(final ClickEvent e) {
     final Employee emp = JsTypeFactory.create("Christian", "Sadilek", "csadilek@redhat.com");
     Window.alert(emp.getDetailString());
+  }
+  
+  @EventHandler("a4")
+  private void onA4(final ClickEvent e) {
+    appScopedService.fireEvent("Hello!");
   }
 }

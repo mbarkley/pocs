@@ -1,4 +1,4 @@
-package org.jboss.errai.demo.client;
+package org.jboss.errai.demo.core.client;
 
 import java.util.Date;
 

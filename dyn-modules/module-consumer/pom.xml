@@ -153,7 +153,8 @@
           <runTarget>${errai.dev.context}/index.html</runTarget>
           <soyc>false</soyc>
           <hostedWebapp>src/main/webapp</hostedWebapp>          
-          <jsInteropMode>JS</jsInteropMode>
+          <jsInteropMode>JS</jsInteropMode>           
+          <optimizationLevel>0</optimizationLevel>       
         </configuration>
       </plugin>
       <plugin>

@@ -3,9 +3,8 @@
 
   <scan>
     <!-- These exclusions were added by Errai to avoid deploying client-side classes to the server -->
-    <exclude name = "org.jboss.errai.demo.client.local.Consumer$1" />
     <exclude name = "org.jboss.errai.demo.client.local.Consumer" />
-    <exclude name = "org.jboss.errai.demo.client.local.EmployeeFactory" />
+    <exclude name = "org.jboss.errai.demo.client.local.JsTypeFactory" />
     <!-- End of Errai exclusions -->
   </scan>
 </beans>

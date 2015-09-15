@@ -25,7 +25,7 @@
     <errai.jboss.home>${project.build.directory}/wildfly-${as.version}</errai.jboss.home>
   </properties>
 
-  <dependencies>
+  <dependencies>    
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
@@ -65,7 +65,8 @@
     <dependency>
       <groupId>org.jboss.errai</groupId>
       <artifactId>errai-cdi-jboss</artifactId>
-    </dependency>
+    </dependency>  
+
   </dependencies>
 
   <repositories>
@@ -73,10 +74,16 @@
       <id>JBOSS_NEXUS</id>
       <url>http://repository.jboss.org/nexus/content/groups/public</url>
     </repository>
+    
     <repository>
       <id>GOOGLE_SNAPSHOTS</id>
       <url>https://oss.sonatype.org/content/repositories/google-snapshots</url>
     </repository>
+    
+    <repository>
+      <id>OSS</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>    
   </repositories>
 
   <build>
@@ -157,7 +164,7 @@
             <fileset>
               <directory>${basedir}</directory>
               <includes>
-                <include>src/main/webapp/app/</include>
+                <include>src/main/webapp/consumer/</include>
                 <include>src/main/webapp/WEB-INF/deploy/</include>
                 <include>src/main/webapp/WEB-INF/lib/</include>
                 <include>**/gwt-unitCache/**</include>
@@ -235,7 +242,8 @@
           <artifactId>errai-jboss-as-support</artifactId>
         </dependency>
 
-        <dependency><groupId>com.google.guava</groupId><artifactId>guava-gwt</artifactId><scope>provided</scope></dependency>
+        <dependency><groupId>com.google.guava</groupId><artifactId>guava-gwt</artifactId><version>19.0-SNAPSHOT</version><scope>provided</scope></dependency>
+        <dependency><groupId>com.google.guava</groupId><artifactId>guava</artifactId><version>19.0-SNAPSHOT</version></dependency>
         <dependency><groupId>hsqldb</groupId><artifactId>hsqldb</artifactId><scope>provided</scope></dependency>      
         <dependency><groupId>javax.enterprise</groupId><artifactId>cdi-api</artifactId><scope>provided</scope></dependency>
         <dependency><groupId>javax.inject</groupId><artifactId>javax.inject</artifactId><scope>provided</scope></dependency>

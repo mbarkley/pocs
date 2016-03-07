@@ -2,7 +2,8 @@ package org.jboss.errai.demo.producer.client;
 
 import org.jboss.errai.demo.core.client.CrossModuleEvent;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
+
 
 @JsType
 public class CrossModuleEventImpl implements CrossModuleEvent {

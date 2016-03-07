@@ -1,15 +1,13 @@
 package org.jboss.errai.demo.core.client;
 
-import java.util.Date;
+import jsinterop.annotations.JsType;
 
-import com.google.gwt.core.client.js.JsType;
-
-@JsType
+@JsType(namespace="Core")
 public interface Employee {
 
-  Long getId();
+  int getId();
 
-  void setId(Long id);
+  void setId(int id);
 
   String getFirstName();
 
@@ -22,10 +20,6 @@ public interface Employee {
   String getEmail();
 
   void setEmail(String email);
-
-  Date getHireDate();
-
-  void setHireDate(Date hireDate);
 
   String getDetailString();
 }

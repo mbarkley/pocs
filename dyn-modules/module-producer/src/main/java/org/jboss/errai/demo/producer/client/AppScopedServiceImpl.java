@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.jboss.errai.demo.core.client.AppScopedService;
 import org.jboss.errai.demo.core.client.CrossModuleEvent;
 
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 
 @JsType
 @ApplicationScoped
@@ -17,7 +17,7 @@ public class AppScopedServiceImpl implements AppScopedService {
   private HelloWorldProvider helloWorldProvider;
   
   @Inject
-  private Event<CrossModuleEvent> event;
+  private Event<CrossModuleEvent> event;  
   
   @Override
   public String hello() {

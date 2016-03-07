@@ -2,22 +2,19 @@ package org.jboss.errai.demo.producer.client;
 
 import java.util.Date;
 
-import com.google.gwt.core.client.js.JsExport;
-import com.google.gwt.core.client.js.JsNamespace;
-import com.google.gwt.core.client.js.JsType;
+import jsinterop.annotations.JsType;
 
-@JsType
-@JsNamespace("Core")
+@JsType(namespace = "Core")
 public class Employee implements org.jboss.errai.demo.core.client.Employee {
-  
-  private Long id;
+
+  private Integer id;
 
   private String firstName;
 
   private String lastName;
-  
+
   private String email;
-  
+
   private Date hireDate;
 
   private Employee(String firstName, String lastName, String email) {
@@ -26,18 +23,17 @@ public class Employee implements org.jboss.errai.demo.core.client.Employee {
     this.email = email;
   }
   
-  @JsExport
   public static Employee create(String firstName, String lastName, String email) {
     return new Employee(firstName, lastName, email);
   }
-  
+
   @Override
-  public Long getId() {
+  public int getId() {
     return id;
   }
 
   @Override
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
 
@@ -72,22 +68,11 @@ public class Employee implements org.jboss.errai.demo.core.client.Employee {
   }
 
   @Override
-  public Date getHireDate() {
-    return hireDate;
-  }
-
-  @Override
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
-
-  @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((email == null) ? 0 : email.hashCode());
     result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-    result = prime * result + ((hireDate == null) ? 0 : hireDate.hashCode());
     result = prime * result + ((id == null) ? 0 : id.hashCode());
     result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
     return result;
@@ -137,8 +122,8 @@ public class Employee implements org.jboss.errai.demo.core.client.Employee {
 
   @Override
   public String toString() {
-    return "EmployeeImpl [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
-            + ", email=" + email + ", hireDate=" + hireDate + "]";
+    return "EmployeeImpl [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+            + ", hireDate=" + hireDate + "]";
   }
 
   @Override

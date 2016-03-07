@@ -47,7 +47,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <guice.version>3.0</guice.version>
-    <guava.version>17.0</guava.version>
+    <guava.version>20.0-SNAPSHOT</guava.version>
     <appengine.version>1.7.6</appengine.version>
     <validation.api.version>1.0.0.GA</validation.api.version>    
     <mvel.version>2.1.7.Final</mvel.version>

@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>ca.mpbarkley.apt</groupId>
+    <artifactId>apt-playground</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>apt-playground-usage</artifactId>
+  <name>APT Playground Usage</name>
+  
+  <dependencies>
+    <dependency>
+      <groupId>ca.mpbarkley.apt</groupId>
+      <artifactId>apt-playground-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ca.mpbarkley.apt</groupId>
+      <artifactId>apt-playground-processors</artifactId>
+    </dependency>
+  </dependencies>
+</project>

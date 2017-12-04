@@ -1,2 +1,4 @@
 ca.mpbarkley.apt.AProcessor
 ca.mpbarkley.apt.BProcessor
+ca.mpbarkley.apt.CProcessor
+ca.mpbarkley.apt.UnusedProcessor

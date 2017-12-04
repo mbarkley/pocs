@@ -11,12 +11,18 @@
  */
 package ca.mpbarkley.apt;
 
+import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
+import javax.tools.JavaFileObject;
 
 /**
  *
@@ -29,10 +35,60 @@ public class AProcessor extends AbstractProcessor {
 
   @Override
   public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
+    System.out.println("---------------------------------");
+    final List<? extends Element> elements = annotations.stream().flatMap(anno -> roundEnv.getElementsAnnotatedWith(anno).stream()).collect(Collectors.toList());
     System.out.println("AProcessor called.");
-    System.out.println("Number of annotations: " + annotations.size());
-    System.out.println("Annotations: " + annotations);
+    System.out.println("Number of elements: " + elements.size());
+    System.out.println("Elements: " + elements);
     System.out.println("Processing over: " + roundEnv.processingOver());
+
+    // Generate something with @B
+    for (final TypeElement anno : annotations) {
+      for (final Element elem : roundEnv.getElementsAnnotatedWith(anno)) {
+        final String derivedFqcn = ((TypeElement) elem).getQualifiedName().toString() + "B";
+        final String derivedSimpleName = elem.getSimpleName().toString() + "B";
+        try {
+          final JavaFileObject src = processingEnv.getFiler().createSourceFile(derivedFqcn, elem);
+          final Writer writer = src.openWriter();
+          writer.write(String.format(
+                  "package ca.mpbarkley.apt;\n"
+                          + "\n"
+                          + "import ca.mpbarkley.apt.B;\n"
+                          + "\n"
+                          + "@B\n"
+                          + "public class %s {\n"
+                          + "\n"
+                          + "}\n"
+                          + "\n",
+                          derivedSimpleName));
+          writer.close();
+        } catch (final IOException e) {
+          System.out.println("Unexpected error processing " + elem);
+          e.printStackTrace();
+        }
+      }
+    }
+
+    // Generating something that would cause an error if processed to verify that we really aren't processing any more output
+    if (roundEnv.processingOver()) {
+      try {
+        final JavaFileObject src = processingEnv.getFiler().createSourceFile("ca.mpbarkley.apt.Bomb");
+        final Writer writer = src.openWriter();
+        writer.write(
+                "package ca.mpbarkley.apt;\n"
+                + "\n"
+                + "import ca.mpbarkley.apt.Unused;\n"
+                + "\n"
+                + "@Unused\n"
+                + "public class Bomb {\n"
+                + "\n"
+                + "}\n"
+                + "\n");
+      } catch (final IOException e) {
+        System.out.println("Error creating bomb.");
+        e.printStackTrace();
+      }
+    }
 
     return false;
   }

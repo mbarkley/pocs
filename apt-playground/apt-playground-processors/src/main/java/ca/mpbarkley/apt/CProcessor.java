@@ -28,34 +28,31 @@ import javax.tools.JavaFileObject;
  *
  * @author Max Barkley <mbarkley@redhat.com>
  */
-@SupportedAnnotationTypes(BProcessor.B_FQCN)
-public class BProcessor extends AbstractProcessor {
+@SupportedAnnotationTypes(CProcessor.C_FQCN)
+public class CProcessor extends AbstractProcessor {
 
-  static final String B_FQCN = "ca.mpbarkley.apt.B";
+  static final String C_FQCN = "ca.mpbarkley.apt.C";
 
   @Override
   public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
     System.out.println("---------------------------------");
-    System.out.println("BProcessor called");
+    System.out.println("CProcessor called");
     final List<? extends Element> elements = annotations.stream().flatMap(anno -> roundEnv.getElementsAnnotatedWith(anno).stream()).collect(Collectors.toList());
     System.out.println("Number of elements: " + elements.size());
     System.out.println("Elements: " + elements);
     System.out.println("Processing over: " + roundEnv.processingOver());
 
-    // Generate something with @C
+    // Generate something with no annotation
     for (final TypeElement anno : annotations) {
       for (final Element elem : roundEnv.getElementsAnnotatedWith(anno)) {
-        final String derivedFqcn = ((TypeElement) elem).getQualifiedName().toString() + "C";
-        final String derivedSimpleName = elem.getSimpleName().toString() + "C";
+        final String derivedFqcn = ((TypeElement) elem).getQualifiedName().toString() + "Unannotated";
+        final String derivedSimpleName = elem.getSimpleName().toString() + "Unannotated";
         try {
           final JavaFileObject src = processingEnv.getFiler().createSourceFile(derivedFqcn, elem);
           final Writer writer = src.openWriter();
           writer.write(String.format(
                   "package ca.mpbarkley.apt;\n"
                           + "\n"
-                          + "import ca.mpbarkley.apt.C;\n"
-                          + "\n"
-                          + "@C\n"
                           + "public class %s {\n"
                           + "\n"
                           + "}\n"
